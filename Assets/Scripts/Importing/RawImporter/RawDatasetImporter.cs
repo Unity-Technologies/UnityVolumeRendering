@@ -40,7 +40,7 @@ namespace UnityVolumeRendering
             this.skipBytes = skipBytes;
         }
 
-        public VolumeDataset Import()
+        public virtual VolumeDataset Import()
         {
             // Check that the file exists
             if (!File.Exists(filePath))
@@ -91,7 +91,7 @@ namespace UnityVolumeRendering
             return dataset;
         }
 
-        private int ReadDataValue(BinaryReader reader)
+        protected int ReadDataValue(BinaryReader reader)
         {
             switch (contentFormat)
             {
@@ -153,7 +153,7 @@ namespace UnityVolumeRendering
             }
         }
 
-        private int GetSampleFormatSize(DataContentFormat format)
+        protected int GetSampleFormatSize(DataContentFormat format)
         {
             switch (format)
             {
