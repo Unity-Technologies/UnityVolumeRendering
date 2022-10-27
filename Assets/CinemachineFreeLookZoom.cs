@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -63,17 +64,62 @@ public class CinemachineFreeLookZoom : MonoBehaviour
     }
 #endif
 
+    public float zoomRate = 0.2f;
+    float currentZoomScale = 0.5f;
+    float prevZoomScale = 0.0f;
+    public void OnZoomOut()
+    {
+        currentZoomScale = Mathf.Clamp(currentZoomScale + zoomRate, minScale, maxScale);
+        
+        // if (originalOrbits != null)
+        // {
+        //     // zAxis.Update(Time.deltaTime);
+        //     currentZoomScale = Mathf.Lerp(currentZoomScale, maxScale, zoomRate);
+        //     Debug.Log($"scale: {currentZoomScale}, : ({minScale}, {maxScale}, {zoomRate})");
+        //     for (int i = 0; i < originalOrbits.Length; i++)
+        //     {
+        //         freelook.m_Orbits[i].m_Height = originalOrbits[i].m_Height * currentZoomScale;
+        //         freelook.m_Orbits[i].m_Radius = originalOrbits[i].m_Radius * currentZoomScale;
+        //     }
+        // }
+    }
+    
+    public void OnZoomIn()
+    {
+        currentZoomScale = Mathf.Clamp(currentZoomScale - zoomRate, minScale, maxScale);
+        // if (originalOrbits != null)
+        // {
+        //     // zAxis.Update(Time.deltaTime);
+        //     currentZoomScale = Mathf.Lerp(minScale, currentZoomScale, zoomRate);
+        //     Debug.Log($"scale: {currentZoomScale}, : ({minScale}, {maxScale}, {zoomRate})");
+        //     for (int i = 0; i < originalOrbits.Length; i++)
+        //     {
+        //         freelook.m_Orbits[i].m_Height = originalOrbits[i].m_Height * currentZoomScale;
+        //         freelook.m_Orbits[i].m_Radius = originalOrbits[i].m_Radius * currentZoomScale;
+        //     }
+        // }
+    }
+    
     void Update()
     {
+        
+        
         if (originalOrbits != null)
         {
-            zAxis.Update(Time.deltaTime);
-            float scale = Mathf.Lerp(minScale, maxScale, zAxis.Value);
             for (int i = 0; i < originalOrbits.Length; i++)
             {
-                freelook.m_Orbits[i].m_Height = originalOrbits[i].m_Height * scale;
-                freelook.m_Orbits[i].m_Radius = originalOrbits[i].m_Radius * scale;
+                freelook.m_Orbits[i].m_Height = originalOrbits[i].m_Height * currentZoomScale;
+                freelook.m_Orbits[i].m_Radius = originalOrbits[i].m_Radius * currentZoomScale;
             }
+            
+            
+            // zAxis.Update(Time.deltaTime);
+            // float scale = Mathf.Lerp(minScale, maxScale, zAxis.Value);
+            // for (int i = 0; i < originalOrbits.Length; i++)
+            // {
+            //     freelook.m_Orbits[i].m_Height = originalOrbits[i].m_Height * scale;
+            //     freelook.m_Orbits[i].m_Radius = originalOrbits[i].m_Radius * scale;
+            // }
         }
     }
 }

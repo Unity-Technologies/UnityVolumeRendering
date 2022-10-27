@@ -62,11 +62,18 @@ public class PointCloudGrabber : MonoBehaviour
         if (dataset != null)
         { 
             var obj = VolumeObjectFactory.CreateObject(dataset);
+            
+            // Create cross section pane
+            var plane = VolumeObjectFactory.SpawnOrientedCrossSectionPlane(obj);
+            CrossPaneManager.Instance.SetCrossPlane(plane);
+            plane.SetActive(false);
         }
         else
         {
             Debug.LogError("Failed to import datset");
         }
+        
+        
     }
 
     
