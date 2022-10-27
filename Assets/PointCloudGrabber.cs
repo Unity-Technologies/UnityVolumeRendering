@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Unity.DigitalTwins.Annotation;
+using Unity.DigitalTwins.Annotation.Samples;
 using Unity.DigitalTwins.Common;
 using Unity.DigitalTwins.Common.Runtime;
 using Unity.DigitalTwins.DataStreaming.Runtime;
@@ -22,6 +24,7 @@ public class PointCloudGrabber : MonoBehaviour
     UnityHttpClient m_HttpClient;
     CompositeAuthenticator m_Authenticator;
     ServiceHttpClient m_Service;
+    AnnotationRepository m_AnnotationRepository;
 
     string baseUrl = "https://dt.unity.com/api/datasets/";
     string workspaceId = "abe3d1a9-160d-4950-9122-63b0253408ab";
@@ -38,16 +41,18 @@ public class PointCloudGrabber : MonoBehaviour
 
         m_Authenticator = new CompositeAuthenticator(m_HttpClient, DigitalTwinsPlayerSettings.Instance, DigitalTwinsPlayerSettings.Instance);
         await m_Authenticator.InitializeAsync();
-        await m_Authenticator.LogoutAsync();        // if (m_Authenticator.AuthenticationState == AuthenticationState.LoggedOut)
+        await m_Authenticator.LogoutAsync(); // if (m_Authenticator.AuthenticationState == AuthenticationState.LoggedOut)
+
         //     await m_Authenticator.LoginAsync();
-        await m_Authenticator.LoginAsync();
-        
+        if (m_Authenticator.AuthenticationState == AuthenticationState.LoggedOut)
+            await m_Authenticator.LoginAsync();
+
         // We will get our data from this service.
         m_Service = new ServiceHttpClient(m_HttpClient, m_Authenticator, DigitalTwinsPlayerSettings.Instance);
 
         // Retrieving our uploaded scene through the available Scenes.
         var sceneProvider = new SceneProvider(m_Service, m_CloudConfiguration);
-        
+
         var workspaceProvider = new WorkspaceProvider(m_Service, m_CloudConfiguration);
 
         var workspace = await workspaceProvider.GetWorkspaceAsync(workspaceId);
@@ -56,13 +61,13 @@ public class PointCloudGrabber : MonoBehaviour
         Debug.Log($"nugget: {nugget}");
 
         var importer = new DtRawDatasetImporter(nugget);
-        
+
         var dataset = importer.Import();
 
         if (dataset != null)
-        { 
+        {
             var obj = VolumeObjectFactory.CreateObject(dataset);
-            
+
             // Create cross section pane
             var plane = VolumeObjectFactory.SpawnOrientedCrossSectionPlane(obj);
             CrossPaneManager.Instance.SetCrossPlane(plane);
@@ -72,12 +77,34 @@ public class PointCloudGrabber : MonoBehaviour
         {
             Debug.LogError("Failed to import datset");
         }
-        
-        
+
+        var scenes = await workspace.ListScenesAsync();
+        var scene = scenes.First();
+
+        m_AnnotationRepository = new AnnotationRepository(scene, m_Service, m_CloudConfiguration);
+
+        try
+        {
+            var topics = await m_AnnotationRepository.GetTopicsAsync();
+
+            var t = topics.First();
+
+            // Fetches an existing topic using that existing topic's ID
+            var fetchedTopic = await m_AnnotationRepository.GetTopicAsync(t.Id);
+
+            // Outputs the fetched topic information
+            Debug.Log($"Feched Topic ID: {fetchedTopic.Id}, Created Topic Title: {fetchedTopic.Title}");
+
+
+        }
+        catch (ServiceException e)
+        {
+            Debug.LogError(e);
+            throw;
+        }
     }
 
-    
-    
+
     async Task<byte[]> OurSweetMethod()
     {
         try

@@ -1,0 +1,11 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.DigitalTwins.Annotation.Samples.TopicsAndComments
+{
+    public class TopicsAndCommentsSample : Unity.DigitalTwins.Annotation.Samples.AnnotationSampleBehaviour
+    {
+        public TopicsAndCommentsSample() {}
+        [System.Runtime.CompilerServices.AsyncStateMachine(typeof(Unity.DigitalTwins.Annotation.Samples.TopicsAndComments.TopicsAndCommentsSample.<InitializeAsync>d__4))] public virtual System.Threading.Tasks.Task InitializeAsync(Unity.DigitalTwins.Common.IScene scene, Unity.DigitalTwins.Common.IAccessTokenProvider accessTokenProvider, Unity.DigitalTwins.Common.CloudConfiguration cloudConfiguration);
+    }
+}
