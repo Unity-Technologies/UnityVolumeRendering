@@ -1,0 +1,36 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.DigitalTwins.Storage.Samples
+{
+    public class LoginManager : UnityEngine.MonoBehaviour
+    {
+        public event System.Action<Unity.DigitalTwins.Identity.AuthenticationState> AuthenticationStateChanged;
+        public Unity.DigitalTwins.Identity.AuthenticationState AuthenticationState { get; }
+        public LoginManager() {}
+    }
+
+    public static class PlatformServices
+    {
+        public static Unity.DigitalTwins.Identity.IInteractiveAuthenticator Authenticator { get; }
+        public static Unity.DigitalTwins.Identity.IUserInfoProvider UserInfoProvider { get; }
+        public static Unity.DigitalTwins.Storage.IWorkspaceProvider WorkspaceProvider { get; }
+        [System.Diagnostics.DebuggerStepThrough] [System.Runtime.CompilerServices.AsyncStateMachine(typeof(Unity.DigitalTwins.Storage.Samples.PlatformServices.<InitializeAsync>d__13))] public static System.Threading.Tasks.Task InitializeAsync();
+        public static void Shutdown();
+    }
+
+    [UnityEngine.DefaultExecutionOrder(-2147483648)] public class PlatformServicesInitialization : UnityEngine.MonoBehaviour
+    {
+        public PlatformServicesInitialization() {}
+    }
+
+    [UnityEngine.DefaultExecutionOrder(2147483647)] public class PlatformServicesShutdown : UnityEngine.MonoBehaviour
+    {
+        public PlatformServicesShutdown() {}
+    }
+
+    public class SceneController : UnityEngine.MonoBehaviour
+    {
+        public SceneController() {}
+    }
+}

@@ -1,0 +1,42 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.DigitalTwins.Storage.Samples
+{
+    public class ContentScroller : UnityEngine.MonoBehaviour
+    {
+        public event System.Action<Unity.DigitalTwins.Common.IWorkspace> WorkspaceButtonClicked;
+        public ContentScroller() {}
+        public void Clear();
+        public void SetSceneContent(System.Collections.Generic.IEnumerable<Unity.DigitalTwins.Common.IScene> scenes);
+        public void SetWorkspaceContent(System.Collections.Generic.IEnumerable<Unity.DigitalTwins.Common.IWorkspace> workspaces);
+    }
+
+    public class SceneButton : Unity.DigitalTwins.Storage.Samples.ScrollButton<Unity.DigitalTwins.Common.IScene>
+    {
+        public SceneButton() {}
+        public virtual void SetItem(Unity.DigitalTwins.Common.IScene scene, string displayContent, System.Action<Unity.DigitalTwins.Common.IScene, string> onButtonClicked);
+    }
+
+    public abstract class ScrollButton<TItem> : UnityEngine.MonoBehaviour
+    {
+        public TItem Item { get; }
+        protected ScrollButton() {}
+        public virtual void SetItem(TItem item, string displayContent, System.Action<TItem, string> onButtonClicked);
+        protected void SetLabel(string label);
+    }
+
+    public class WorkspaceButton : Unity.DigitalTwins.Storage.Samples.ScrollButton<Unity.DigitalTwins.Common.IWorkspace>
+    {
+        public WorkspaceButton() {}
+        public virtual void SetItem(Unity.DigitalTwins.Common.IWorkspace workspace, string displayContent, System.Action<Unity.DigitalTwins.Common.IWorkspace, string> onButtonClicked);
+    }
+}
+
+namespace Unity.DigitalTwins.Storage.Samples.WorkspacesAndScenes
+{
+    public class WorkspacesAndScenesSample : UnityEngine.MonoBehaviour
+    {
+        public WorkspacesAndScenesSample() {}
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "Unity.DigitalTwins.Storage.Samples.WorkSpacesAndScenes",
+    "rootNamespace": "",
+    "references": [
+        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
+        "GUID:2bafac87e7f4b9b418d9448d219b01ab",
+        "GUID:f2f9fbb8654eff343bf4a94f2a688687",
+        "GUID:276bf4fd0c825cf4b94eb157d3b3675f",
+        "GUID:84dcd8a3554f14ee3ba3f0273b57ad35",
+        "GUID:498d02e03062b2649b108f31a9668c56",
+        "GUID:b344fc90df84f5a4f968af99d3b862a9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.digital-twins.identity",
+            "expression": "0.4.0",
+            "define": "USE_DT_IDENTITY"
+        }
+    ],
+    "noEngineReferences": false
+}

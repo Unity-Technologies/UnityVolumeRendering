@@ -1,0 +1,129 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace Unity.DigitalTwins.Annotation.Samples
+{
+    public abstract class AnnotationSampleBehaviour : UnityEngine.MonoBehaviour
+    {
+        protected AnnotationSampleBehaviour() {}
+        public abstract System.Threading.Tasks.Task InitializeAsync(Unity.DigitalTwins.Common.IScene scene, Unity.DigitalTwins.Common.IAccessTokenProvider accessTokenProvider, Unity.DigitalTwins.Common.CloudConfiguration cloudConfiguration);
+    }
+
+    public class CommentContainer : UnityEngine.MonoBehaviour
+    {
+        public event Unity.DigitalTwins.Annotation.Samples.DeleteCommentAction DeleteComment;
+        public event Unity.DigitalTwins.Annotation.Samples.UpdateCommentAction UpdateComment;
+        public Unity.DigitalTwins.Annotation.IComment Comment { get; }
+        public CommentContainer() {}
+        public void Set(Unity.DigitalTwins.Annotation.ITopic topic, Unity.DigitalTwins.Annotation.IComment comment);
+    }
+
+    public delegate System.Threading.Tasks.Task<Unity.DigitalTwins.Annotation.IComment> CreateCommentAction(Unity.DigitalTwins.Annotation.ITopic topic, string commentText);
+
+    public delegate System.Threading.Tasks.Task<Unity.DigitalTwins.Annotation.ITopic> CreateTopicAction(string topicTitle);
+
+    public delegate System.Threading.Tasks.Task DeleteCommentAction(Unity.DigitalTwins.Annotation.ITopic topic, System.Guid commentId);
+
+    public delegate System.Threading.Tasks.Task DeleteTopicAction(System.Guid topicId);
+
+    public class FlyoutDialog : UnityEngine.MonoBehaviour
+    {
+        public event System.Action Delete;
+        public event System.Action<string> Edit;
+        public event System.Action ToggleResolution;
+        public FlyoutDialog() {}
+        public void CloseDialog();
+        public void OpenDialog(bool isResolved = False);
+    }
+
+    public class InformationBar : UnityEngine.MonoBehaviour
+    {
+        public InformationBar() {}
+        public void SetProjectId(System.Guid value);
+        public void SetUserName(string value);
+    }
+
+    public class InputDialog : UnityEngine.MonoBehaviour
+    {
+        public InputDialog() {}
+        public void ClearDialog();
+        public void OpenDialog(System.Action<string> onTextInput, string placeholderLabel = default(string));
+    }
+
+    public class LoginManager : UnityEngine.MonoBehaviour
+    {
+        public event System.Action<Unity.DigitalTwins.Common.IAccessTokenProvider, System.Guid, string, Unity.DigitalTwins.Common.CloudConfiguration> LaunchScene;
+        public event System.Action LoggedOut;
+        public LoginManager() {}
+        public void Login();
+        public void Logout();
+    }
+
+    public class NestedScroller : UnityEngine.UI.ScrollRect
+    {
+        public NestedScroller() {}
+        public virtual void OnBeginDrag(UnityEngine.EventSystems.PointerEventData eventData);
+        public virtual void OnDrag(UnityEngine.EventSystems.PointerEventData eventData);
+        public virtual void OnEndDrag(UnityEngine.EventSystems.PointerEventData eventData);
+    }
+
+    public static class PlatformServices
+    {
+        public static Unity.DigitalTwins.Identity.IInteractiveAuthenticator Authenticator { get; }
+        public static Unity.DigitalTwins.Common.CloudConfiguration CloudConfiguration { get; }
+        public static Unity.DigitalTwins.Common.IServiceHttpClient ServiceHttpClient { get; }
+        public static Unity.DigitalTwins.Identity.IUserInfoProvider UserInfoProvider { get; }
+        public static Unity.DigitalTwins.Storage.IWorkspaceProvider WorkspaceProvider { get; }
+        [System.Runtime.CompilerServices.AsyncStateMachine(typeof(Unity.DigitalTwins.Annotation.Samples.PlatformServices.<InitializeAsync>d__20))] public static System.Threading.Tasks.Task InitializeAsync();
+        public static void Shutdown();
+    }
+
+    [UnityEngine.DefaultExecutionOrder(-2147483648)] public class PlatformServicesInitialization : UnityEngine.MonoBehaviour
+    {
+        public PlatformServicesInitialization() {}
+    }
+
+    [UnityEngine.DefaultExecutionOrder(2147483647)] public class PlatformServicesShutdown : UnityEngine.MonoBehaviour
+    {
+        public PlatformServicesShutdown() {}
+    }
+
+    public class SceneController : UnityEngine.MonoBehaviour
+    {
+        public SceneController() {}
+    }
+
+    public class TopicContainer : UnityEngine.MonoBehaviour
+    {
+        public event Unity.DigitalTwins.Annotation.Samples.CreateCommentAction CreateComment;
+        public event Unity.DigitalTwins.Annotation.Samples.DeleteCommentAction DeleteComment;
+        public event Unity.DigitalTwins.Annotation.Samples.DeleteTopicAction DeleteTopic;
+        public event Unity.DigitalTwins.Annotation.Samples.UpdateCommentAction UpdateComment;
+        public event Unity.DigitalTwins.Annotation.Samples.UpdateTopicResolutionAction UpdateTopicResolution;
+        public event Unity.DigitalTwins.Annotation.Samples.UpdateTopicTitleAction UpdateTopicTitle;
+        public Unity.DigitalTwins.Annotation.ITopic Topic { get; }
+        public TopicContainer() {}
+        [System.Runtime.CompilerServices.AsyncStateMachine(typeof(Unity.DigitalTwins.Annotation.Samples.TopicContainer.<Set>d__33))] public System.Threading.Tasks.Task Set(Unity.DigitalTwins.Annotation.ITopic topic);
+    }
+
+    public class TopicUIController : UnityEngine.MonoBehaviour
+    {
+        public event Unity.DigitalTwins.Annotation.Samples.CreateCommentAction CreateComment;
+        public event Unity.DigitalTwins.Annotation.Samples.CreateTopicAction CreateTopic;
+        public event Unity.DigitalTwins.Annotation.Samples.DeleteCommentAction DeleteComment;
+        public event Unity.DigitalTwins.Annotation.Samples.DeleteTopicAction DeleteTopic;
+        public event Unity.DigitalTwins.Annotation.Samples.UpdateCommentAction UpdateComment;
+        public event Unity.DigitalTwins.Annotation.Samples.UpdateTopicResolutionAction UpdateTopicResolution;
+        public event Unity.DigitalTwins.Annotation.Samples.UpdateTopicTitleAction UpdateTopicTitle;
+        public TopicUIController() {}
+        [System.Runtime.CompilerServices.AsyncStateMachine(typeof(Unity.DigitalTwins.Annotation.Samples.TopicUIController.<AddOrUpdateTopic>d__34))] public System.Threading.Tasks.Task AddOrUpdateTopic(Unity.DigitalTwins.Annotation.ITopic topic, bool orderTopics = True);
+        public void DeleteTopicContainer(System.Guid topicId);
+        [System.Runtime.CompilerServices.AsyncStateMachine(typeof(Unity.DigitalTwins.Annotation.Samples.TopicUIController.<OnInitialize>d__28))] public System.Threading.Tasks.Task OnInitialize(System.Collections.Generic.IEnumerable<Unity.DigitalTwins.Annotation.ITopic> topics);
+    }
+
+    public delegate System.Threading.Tasks.Task<Unity.DigitalTwins.Annotation.IComment> UpdateCommentAction(Unity.DigitalTwins.Annotation.ITopic topic, Unity.DigitalTwins.Annotation.IComment commentToUpdate, string commentText);
+
+    public delegate System.Threading.Tasks.Task<Unity.DigitalTwins.Annotation.ITopic> UpdateTopicResolutionAction(Unity.DigitalTwins.Annotation.ITopic topicToUpdate, bool resolution);
+
+    public delegate System.Threading.Tasks.Task<Unity.DigitalTwins.Annotation.ITopic> UpdateTopicTitleAction(Unity.DigitalTwins.Annotation.ITopic topicToUpdate, string updatedTopicTitle);
+}

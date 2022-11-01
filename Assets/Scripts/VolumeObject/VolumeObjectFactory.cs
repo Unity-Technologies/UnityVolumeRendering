@@ -64,6 +64,22 @@ namespace UnityVolumeRendering
 #endif
         }
 
+        public static GameObject SpawnOrientedCrossSectionPlane(VolumeRenderedObject volobj)
+        {
+            GameObject quad = GameObject.Instantiate((GameObject)Resources.Load("CrossSectionPlane"));
+            quad.transform.rotation = Quaternion.Euler(270.0f, 0.0f, 0.0f);
+            CrossSectionPlane csplane = quad.gameObject.GetComponent<CrossSectionPlane>();
+            csplane.SetTargetObject(volobj);
+            quad.transform.position = volobj.transform.position;
+            quad.AddComponent<LookAtCamera>();
+
+#if UNITY_EDITOR
+            UnityEditor.Selection.objects = new UnityEngine.Object[] { quad };
+#endif
+
+            return quad;
+        }
+        
         public static void SpawnCutoutBox(VolumeRenderedObject volobj)
         {
             GameObject obj = GameObject.Instantiate((GameObject)Resources.Load("CutoutBox"));

@@ -1,0 +1,21 @@
+{
+    "name": "Unity.DigitalTwins.Annotation.Samples.TopicsAndComments",
+    "rootNamespace": "Unity.DigitalTwins.Annotation.Samples.TopicsAndComments",
+    "references": [
+        "GUID:6bf6aea577b8541f0bca2c58567f248a",
+        "GUID:0d3938dd61a40493490ed62daeb31776",
+        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
+        "GUID:2bafac87e7f4b9b418d9448d219b01ab",
+        "GUID:498d02e03062b2649b108f31a9668c56",
+        "GUID:b344fc90df84f5a4f968af99d3b862a9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
